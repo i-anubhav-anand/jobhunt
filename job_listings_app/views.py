@@ -8,7 +8,7 @@ def get_job_listings():
         "app_id": "22ad7033",
         "app_key": "09ba450914232d9866bb2eabb94c101e",
         "results_per_page": 200,
-        "what": "Software developer",
+        "what": "Data Science",
         "where": "london",
         "content-type": "application/json"
     }
