@@ -1,0 +1,170 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Job Listings</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+  </head>
+  <body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <h1 class="logo">JobHunt.ai</h1>
+      <div class="menus">
+        <a href="#"><ion-icon name="home-outline"></ion-icon> Home</a>
+        <a href="#"><ion-icon name="newspaper-outline"></ion-icon> Find Jobs</a>
+        <a href="#"
+          ><ion-icon name="stats-chart-outline"></ion-icon> Performance</a
+        >
+        <a href="#"><ion-icon name="bookmarks-outline"></ion-icon> Bookmarks</a>
+        <a href="#"><ion-icon name="mail-unread-outline"></ion-icon> Message</a>
+        <a href="#"><ion-icon name="settings-outline"></ion-icon> Setting</a>
+      </div>
+      <div class="profile">
+        <img class="profile-img" />
+        <!-- <ion-icon name="person-circle-outline"></ion-icon> -->
+        <div class="profile-name">
+          <h4>Albert Einstein</h4>
+          <p>Data Science</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- End of Sidebar -->
+    <div class="main">
+      <div class="main-header">
+        <ion-icon class="menu-bar" name="menu-outline"></ion-icon>
+        <div class="search">
+          <input type="text" placeholder="Search your best job here..." />
+          <button class="btn-search">
+            <ion-icon name="search-outline"></ion-icon>
+          </button>
+        </div>
+      </div>
+      <div class="filter-wrapper">
+        <p>Recommendation</p>
+        <div class="filter">
+          <button class="btn-filter">Data Science</button>
+          <button class="btn-filter">Data Engineer</button>
+          <button class="btn-filter">Data Analyst</button>
+          <button class="btn-filter">Data Visualization</button>
+          <button class="btn-filter">CRM Analyst</button>
+        </div>
+      </div>
+      <div class="sort">
+        <p>Sort</p>
+        <div class="sort-list">
+          <select>
+            <option value="0">All</option>
+            <option value="1">Newest Post</option>
+            <option value="2">Oldest Post</option>
+            <option value="3">Most Relevant</option>
+            <option value="4">Highest Paid</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- job listing -->
+      <div class="wrapper">
+        {% for job in job_listings %}
+        <div class="card">
+          <div class="card-left blue-bg">
+            <img src="{{ job.company.logo }}" />
+          </div>
+          <div class="card-center">
+            <h3>{{ job.company.display_name }}</h3>
+            <p class="card-detail">{{ job.title }}</p>
+            <p class="card-loc">
+              <ion-icon name="location-outline"></ion-icon> {{
+              job.location.display_name }}
+            </p>
+            <div class="card-sub">
+              <p>
+                <ion-icon name="today-outline"></ion-icon> {{ job.created }}
+              </p>
+              <p>
+                <ion-icon name="hourglass-outline"></ion-icon> {{
+                job.contract_type }}
+              </p>
+              <p>
+                <ion-icon name="people-outline"></ion-icon> {{
+                job.number_of_applications }} Applicants
+              </p>
+            </div>
+          </div>
+          <div class="card-right">
+            <div class="card-tag">
+              <h5>Division</h5>
+              <a href="#">{{ job.category.label }}</a>
+            </div>
+
+            <div class="card-salary">
+              <p>
+                <b>${{ job.salary_min }}</b> - <b>${{ job.salary_max }}</b>
+                <span>/Year</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        <!-- end job listing -->
+      </div>
+    </div>
+
+    <!-- right section: detail jobs -->
+
+    <div class="detail">
+      <ion-icon class="close-detail" name="close-detail"></ion-icon>
+      <div class="detail-header">
+        <img src="images/google.svg" />
+        <h2>Google</h2>
+        <p>Data Science</p>
+      </div>
+      <hr class="divider" />
+      <div class="detail-desc">
+        <div class="about">
+          <h4>About Company</h4>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, iste
+            rerum laudantium.
+          </p>
+          <a href="#">Read more</a>
+        </div>
+        <hr class="divider" />
+        <div class="qualification">
+          <h4>Qualification</h4>
+
+          <ul>
+            <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+            <li>
+              Nobis sint voluptas ducimus, reprehenderit tempore eveniet
+              repudiandae accusantium
+            </li>
+            <li>
+              Ipsum expedita commodi quod iusto maxime rerum dolores sint
+              voluptas ducimus
+            </li>
+          </ul>
+        </div>
+      </div>
+      <hr class="divider" />
+      <div class="detail-btn">
+        <button class="btn-apply">Apply Now</button>
+        <button class="btn-save">Save Job</button>
+      </div>
+    </div>
+  </body>
+  <script
+    type="module"
+    src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+  ></script>
+  <script
+    nomodule
+    src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+  ></script>
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+  <script src="app.js"></script>
+</html>
